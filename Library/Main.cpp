@@ -36,5 +36,4 @@ void main()
 		}
 		break;
 	}
-	int n; std::cin >> n;
 }
