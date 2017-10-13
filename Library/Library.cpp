@@ -63,19 +63,18 @@ bool Library::RemoveAuthor(std::string name)
 		return 0;
 }
 
-void Library::AddBook(std::string title, std::string author, int year)
+bool Library::AddBook(std::string title, std::string author, int year)
 {
-	Book new_book(title, author, year);
 	std::vector<Author>::iterator it;
 	for (it = writers.begin(); it != writers.end(); it++)
 		if (it->GetName() == author)
 			break;
 	if (it != writers.end())
-		it->AddComposition(new_book);
+		return it->AddComposition(title, year);
 	else {
 		Author new_author(author);
-		new_author.AddComposition(new_book);
 		writers.push_back(new_author);
+		return writers.back().AddComposition(title, year);
 	}
 }
 

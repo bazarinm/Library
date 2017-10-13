@@ -16,24 +16,26 @@ void main()
 	//my_library.RemoveBook("Nos", "A.S. Pushkin");
 	//my_library.RemoveAuthor("L.N. Tolstoy");
 
-	while (true) {
+	do {
 		std::cout << std::endl << "Enter 1 to add author, 2 to add book," << std::endl;
 		std::cout << "3 to remove author, 4 to remove book," << std::endl;
 		std::cout << "5 to show libary contents, 6 to rename library" << std::endl;
-		std::cout << "or enter 0 for exit." << std::endl;
+		std::cout << "or enter anything else for exit." << std::endl;
 		std::cout << "operation: ";
+		operation = 0;
 		std::cin >> operation;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << std::endl;
 
 		switch (operation) {
-			case 1: my_console.ConsoleAddAuthor(); continue;
-			case 2: my_console.ConsoleAddBook(); continue;
-			case 3: my_console.ConsoleRemoveAuthor(); continue;
-			case 4: my_console.ConsoleRemoveBook(); continue;
-			case 5: my_console.ConsoleGetContents(); continue;
-			case 6: my_console.ConsoleRename(); continue;
-			default: break;
+			case 1: my_console.ConsoleAddAuthor(); break;
+			case 2: my_console.ConsoleAddBook(); break;
+			case 3: my_console.ConsoleRemoveAuthor(); break;
+			case 4: my_console.ConsoleRemoveBook(); break;
+			case 5: my_console.ConsoleGetContents(); break;
+			case 6: my_console.ConsoleRename(); break;
 		}
-		break;
-	}
+
+	} while (operation);
 }

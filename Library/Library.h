@@ -17,7 +17,7 @@ public:
 	std::vector<Book> GetContents();
 	bool AddAuthor(std::string name);
 	bool RemoveAuthor(std::string name);
-	void AddBook(std::string title, std::string author, int year);
+	bool AddBook(std::string title, std::string author, int year);
 	bool RemoveBook(std::string title, std::string author);
 private:
 	std::string declaration;

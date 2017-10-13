@@ -15,11 +15,22 @@ std::string Author::GetName()
 std::vector<Book>& Author::ListCompositions()
 {
 	return compositions;
-}		
+}
 
-void Author::AddComposition(Book& book)
+bool Author::AddComposition(std::string title, int year)
 {
-	compositions.push_back(book);
+	std::vector<Book>::iterator it;
+	for (it = compositions.begin(); it != compositions.end(); it++) {
+		if (it->GetTitle() == title)
+			break;
+	}
+	if (it == compositions.end()) {
+		Book book(title, name, year);
+		compositions.push_back(book);
+		return 1;
+	}
+	else
+		return 0;
 }
 
 bool Author::RemoveComposition(std::string title)

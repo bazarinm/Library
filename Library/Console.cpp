@@ -13,7 +13,7 @@ void Console::ConsoleRename()
 {
 	std::string new_declaration;
 	std::cout << "Enter new library title: ";
-	std::cin >> new_declaration;
+	std::getline(std::cin, new_declaration);
 	MyLybrary.Rename(new_declaration);
 }
 
@@ -33,20 +33,18 @@ void Console::ConsoleAddAuthor()
 {
 	std::string name;
 	std::cout << "Enter name: ";
-	std::cin >> name;
-	if (!MyLybrary.AddAuthor(name)) {
+	std::getline(std::cin, name);
+	if (!MyLybrary.AddAuthor(name)) 
 		std::cout << "This author already extists" << std::endl;
-	}
 }
 
 void Console::ConsoleRemoveAuthor()
 {
 	std::string name;
 	std::cout << "Enter name: ";
-	std::cin >> name;
-	if (!MyLybrary.RemoveAuthor(name)) {
+	std::getline(std::cin, name);
+	if (!MyLybrary.RemoveAuthor(name)) 
 		std::cout << "This author does not exist" << std::endl;
-	};
 }
 
 void Console::ConsoleAddBook()
@@ -54,22 +52,24 @@ void Console::ConsoleAddBook()
 	std::string title, author;
 	int year;
 	std::cout << "Enter title: ";
-	std::cin >> title;
-	std::cout << "Enter author: ";
-	std::cin >> author;
+	std::getline(std::cin, title);
+	std::cout << "Enter author name: ";
+	std::getline(std::cin, author);
 	std::cout << "Enter publishing date: ";
 	std::cin >> year;
-	MyLybrary.AddBook(title, author, year);
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	if (!MyLybrary.AddBook(title, author, year))
+		std::cout << "Book with the same title already exists" << std::endl;
 }
 
 void Console::ConsoleRemoveBook()
 {
 	std::string title, author;
 	std::cout << "Enter title: ";
-	std::cin >> title;
-	std::cout << "Enter author: ";
-	std::cin >> author;
-	if (!MyLybrary.RemoveBook(title, author)) {
+	std::getline(std::cin, title);
+	std::cout << "Enter author name: ";
+	std::getline(std::cin, author);
+	if (!MyLybrary.RemoveBook(title, author)) 
 		std::cout << "This book does not exist" << std::endl;
-	};
 }
