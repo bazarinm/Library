@@ -12,6 +12,7 @@ void main()
 	my_library.AddBook("Voina i Mir T1", "L.N. Tolstoy", 1876);
 	my_library.AddBook("Voina i Mir T2", "L.N. Tolstoy", 1878);
 	my_library.AddBook("Prestuplenie i Nakazanie", "F.M. Dostoevsky", 1876);
+	my_console.ConsoleGetContents();
 
 	do {
 		std::cout << std::endl << "Enter 1 to add author, 2 to add book," << std::endl;
