@@ -12,7 +12,7 @@ public:
 
 	std::string GetName();
 	std::vector<Book>& ListCompositions();
-	void AddComposition(Book& book);
+	bool AddComposition(std::string title, int year);
 	bool RemoveComposition(std::string title);
 private:
 	std::string name;
