@@ -32,7 +32,7 @@ void main()
 			case 3: my_console.ConsoleRemoveAuthor(); break;
 			case 4: my_console.ConsoleRemoveBook(); break;
 			case 5: my_console.ConsoleGetContents(); break;
-			case 6: my_console.ConsoleRename(); break;
+			case 6: my_console.ConsoleRename();
 		}
 
 	} while (operation);
