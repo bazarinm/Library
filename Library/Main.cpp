@@ -15,12 +15,12 @@ void main()
 	my_console.ConsoleGetContents();
 
 	do {
+		operation = 0;
 		std::cout << std::endl << "Enter 1 to add author, 2 to add book," << std::endl;
 		std::cout << "3 to remove author, 4 to remove book," << std::endl;
 		std::cout << "5 to show libary contents, 6 to rename library" << std::endl;
 		std::cout << "or enter anything else for exit." << std::endl;
 		std::cout << "operation: ";
-		operation = 0;
 		std::cin >> operation;
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
