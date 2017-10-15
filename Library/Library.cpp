@@ -52,8 +52,10 @@ std::vector<Book> Library::FindBooksAuthor(std::string name)
 	std::vector<Book> found;
 	std::vector<Author>::iterator it;
 	for (it = writers.begin(); it != writers.end(); it++) 
-		if (it->GetName() == name)
+		if (it->GetName() == name) {
 			found =  it->ListCompositions();
+			break;
+		}
 	return found;
 }
 
