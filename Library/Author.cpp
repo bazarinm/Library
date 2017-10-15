@@ -17,6 +17,26 @@ std::vector<Book>& Author::ListCompositions()
 	return compositions;
 }
 
+std::vector<Book> Author::FindCompositions(std::string title)
+{
+	std::vector<Book> found;
+	std::vector<Book>::iterator it;
+	for (it = compositions.begin(); it != compositions.end(); it++)
+		if (it->GetTitle() == title)
+			found.push_back(*it);
+	return found;
+}
+
+std::vector<Book> Author::FindCompositions(int year)
+{
+	std::vector<Book> found;
+	std::vector<Book>::iterator it;
+	for (it = compositions.begin(); it != compositions.end(); it++)
+		if (it->GetYear() == year)
+			found.push_back(*it);
+	return found;
+}
+
 bool Author::AddComposition(std::string title, int year)
 {
 	std::vector<Book>::iterator it;

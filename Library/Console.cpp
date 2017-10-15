@@ -5,8 +5,8 @@
 #include "Library.h"
 #include "Book.h"
 
-Console::Console(Library& MyLybrary_) 
-	: MyLybrary(MyLybrary_) 
+Console::Console(Library& MyLibrary_) 
+	: MyLibrary(MyLibrary_) 
 {}
 
 void Console::ConsoleRename()
@@ -14,13 +14,13 @@ void Console::ConsoleRename()
 	std::string new_declaration;
 	std::cout << "Enter new library title: ";
 	std::getline(std::cin, new_declaration);
-	MyLybrary.Rename(new_declaration);
+	MyLibrary.Rename(new_declaration);
 }
 
 void Console::ConsoleGetContents()
 {
-	std::cout << "Library " << MyLybrary.GetDeclaration() << ":" << std::endl;
-	std::vector<Book> contents = MyLybrary.GetContents();
+	std::cout << "Library " << MyLibrary.GetDeclaration() << ":" << std::endl;
+	std::vector<Book> contents = MyLibrary.GetContents();
 	std::vector<Book>::iterator it;
 	for (it = contents.begin(); it != contents.end(); it++) {
 		std::cout << it->GetTitle() << " - ";
@@ -29,12 +29,54 @@ void Console::ConsoleGetContents()
 	}
 }
 
+void Console::ConsoleFindBooks()
+{
+	std::vector<Book> results;
+	std::vector<Book>::iterator it;
+	int parameter;
+	std::string querie;
+	std::cout << "Input search parameter" << std::endl;
+	std::cout << "1 for title, 2 for author name or 3 for year" << std::endl;
+	std::cout << "Parameter: ";
+	std::cin >> parameter;
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	switch (parameter) {
+	case 1: 
+		std::cout << "Input title: ";
+		std::getline(std::cin, querie); 
+		results = MyLibrary.FindBooksTitle(querie);
+		break;
+	case 2:
+		std::cout << "Input author name: ";
+		std::getline(std::cin, querie);
+		results = MyLibrary.FindBooksAuthor(querie);
+		break;
+	case 3: 
+		std::cout << "Input year: ";
+		std::cin >> parameter;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		results = MyLibrary.FindBooksYear(parameter);
+	}
+	if (!results.empty()) {
+		std::cout << "Search result:" << std::endl;
+		for (it = results.begin(); it != results.end(); it++) {
+			std::cout << it->GetTitle() << " - ";
+			std::cout << it->GetAuthor() << " - ";
+			std::cout << it->GetYear() << std::endl;
+		}
+	}
+	else
+		std::cout << "Found nothing :(" << std::endl;
+}
+
 void Console::ConsoleAddAuthor()
 {
 	std::string name;
 	std::cout << "Enter name: ";
 	std::getline(std::cin, name);
-	if (!MyLybrary.AddAuthor(name)) 
+	if (!MyLibrary.AddAuthor(name)) 
 		std::cout << "This author already extists" << std::endl;
 }
 
@@ -43,7 +85,7 @@ void Console::ConsoleRemoveAuthor()
 	std::string name;
 	std::cout << "Enter name: ";
 	std::getline(std::cin, name);
-	if (!MyLybrary.RemoveAuthor(name)) 
+	if (!MyLibrary.RemoveAuthor(name)) 
 		std::cout << "This author does not exist" << std::endl;
 }
 
@@ -59,7 +101,7 @@ void Console::ConsoleAddBook()
 	std::cin >> year;
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if (!MyLybrary.AddBook(title, author, year))
+	if (!MyLibrary.AddBook(title, author, year))
 		std::cout << "Book with the same title already exists" << std::endl;
 }
 
@@ -70,6 +112,6 @@ void Console::ConsoleRemoveBook()
 	std::getline(std::cin, title);
 	std::cout << "Enter author name: ";
 	std::getline(std::cin, author);
-	if (!MyLybrary.RemoveBook(title, author)) 
+	if (!MyLibrary.RemoveBook(title, author)) 
 		std::cout << "This book does not exist" << std::endl;
 }

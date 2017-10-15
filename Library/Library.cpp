@@ -34,6 +34,42 @@ std::vector<Book> Library::GetContents()
 	return contents;
 }
 
+std::vector<Book> Library::FindBooksTitle(std::string title)
+{
+	std::vector<Book> found;
+	std::vector<Book> new_found;
+	std::vector<Author>::iterator it;
+	for (it = writers.begin(); it != writers.end(); it++) {
+		new_found = it->FindCompositions(title);
+		found.reserve(found.size() + new_found.size());
+		found.insert(found.end(), new_found.begin(), new_found.end());
+	}
+	return found;
+}
+
+std::vector<Book> Library::FindBooksAuthor(std::string name)
+{
+	std::vector<Book> found;
+	std::vector<Author>::iterator it;
+	for (it = writers.begin(); it != writers.end(); it++) 
+		if (it->GetName() == name)
+			found =  it->ListCompositions();
+	return found;
+}
+
+std::vector<Book> Library::FindBooksYear(int year)
+{
+	std::vector<Book> found;
+	std::vector<Book> new_found;
+	std::vector<Author>::iterator it;
+	for (it = writers.begin(); it != writers.end(); it++) {
+		new_found = it->FindCompositions(year);
+		found.reserve(found.size() + new_found.size());
+		found.insert(found.end(), new_found.begin(), new_found.end());
+	}
+	return found;
+}
+
 bool Library::AddAuthor(std::string name)
 {
 	std::vector<Author>::iterator it;

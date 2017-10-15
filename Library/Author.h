@@ -12,6 +12,8 @@ public:
 
 	std::string GetName();
 	std::vector<Book>& ListCompositions();
+	std::vector<Book> FindCompositions(std::string title);
+	std::vector<Book> FindCompositions(int year);
 	bool AddComposition(std::string title, int year);
 	bool RemoveComposition(std::string title);
 private:

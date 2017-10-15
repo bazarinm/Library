@@ -19,7 +19,7 @@ void main()
 		std::cout << std::endl << "Enter 1 to add author, 2 to add book," << std::endl;
 		std::cout << "3 to remove author, 4 to remove book," << std::endl;
 		std::cout << "5 to show libary contents, 6 to rename library" << std::endl;
-		std::cout << "or enter anything else for exit." << std::endl;
+		std::cout << "7 for search, or enter anything else for exit." << std::endl;
 		std::cout << "operation: ";
 		std::cin >> operation;
 		std::cin.clear();
@@ -33,6 +33,7 @@ void main()
 			case 4: my_console.ConsoleRemoveBook(); break;
 			case 5: my_console.ConsoleGetContents(); break;
 			case 6: my_console.ConsoleRename();
+			case 7: my_console.ConsoleFindBooks();
 		}
 
 	} while (operation);

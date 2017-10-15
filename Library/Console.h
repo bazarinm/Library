@@ -6,16 +6,17 @@
 class Console 
 {
 public:
-	Console(Library& MyLybrary);
+	Console(Library& MyLibrary);
 
 	void ConsoleRename();
 	void ConsoleGetContents();
+	void ConsoleFindBooks();
 	void ConsoleAddAuthor();
 	void ConsoleRemoveAuthor();
 	void ConsoleAddBook();
 	void ConsoleRemoveBook();
 private:
-	Library& MyLybrary;
+	Library& MyLibrary;
 };
 
 #endif
