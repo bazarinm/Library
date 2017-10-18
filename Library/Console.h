@@ -8,6 +8,7 @@ class Console
 public:
 	Console(Library& MyLibrary);
 
+	void ConsoleCallMenu();
 	void ConsoleRename();
 	void ConsoleGetContents();
 	void ConsoleFindBooks();

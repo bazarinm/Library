@@ -6,7 +6,7 @@
 class Book
 {
 public:
-	Book(std::string title, std::string author, int year);
+	Book(const std::string& title, const std::string& author, int year);
 
 	std::string GetTitle();
 	std::string GetAuthor();

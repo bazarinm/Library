@@ -7,11 +7,11 @@
 Library::Library()
 	: declaration("My library")
 {}
-Library::Library(std::string declaration_)
+Library::Library(const std::string& declaration_)
 	: declaration(declaration_)
 {}
 
-void Library::Rename(std::string new_declaration)
+void Library::Rename(const std::string& new_declaration)
 {
 	declaration = new_declaration;
 }
@@ -34,7 +34,7 @@ std::vector<Book> Library::GetContents()
 	return contents;
 }
 
-std::vector<Book> Library::FindBooksTitle(std::string title)
+std::vector<Book> Library::FindBooksTitle(const std::string& title)
 {
 	std::vector<Book> found;
 	std::vector<Book> new_found;
@@ -47,7 +47,7 @@ std::vector<Book> Library::FindBooksTitle(std::string title)
 	return found;
 }
 
-std::vector<Book> Library::FindBooksAuthor(std::string name)
+std::vector<Book> Library::FindBooksAuthor(const std::string& name)
 {
 	std::vector<Book> found;
 	std::vector<Author>::iterator it;
@@ -72,8 +72,9 @@ std::vector<Book> Library::FindBooksYear(int year)
 	return found;
 }
 
-bool Library::AddAuthor(std::string name)
+bool Library::AddAuthor(const std::string& name)
 {
+	bool result = false;
 	std::vector<Author>::iterator it;
 	for (it = writers.begin(); it != writers.end(); it++)
 		if (it->GetName() == name)
@@ -81,50 +82,51 @@ bool Library::AddAuthor(std::string name)
 	if (it == writers.end()) {
 		Author new_author(name);
 		writers.push_back(new_author);
-		return 1;
+		result = true;
 	}
-	else
-		return 0;
+	return result;
 }
 
-bool Library::RemoveAuthor(std::string name)
+bool Library::RemoveAuthor(const std::string& name)
 {
+	bool result = false;
 	std::vector<Author>::iterator it;
 	for (it = writers.begin(); it != writers.end(); it++)
 		if (it->GetName() == name)
 			break;
 	if (it != writers.end()) {
 		writers.erase(it);
-		return 1;
+		result = true;
 	}
-	else
-		return 0;
+	return result;
 }
 
-bool Library::AddBook(std::string title, std::string author, int year)
+bool Library::AddBook(const std::string& title, const std::string& author, int year)
 {
+	bool result = false;
 	std::vector<Author>::iterator it;
 	for (it = writers.begin(); it != writers.end(); it++)
 		if (it->GetName() == author)
 			break;
 	if (it != writers.end())
-		return it->AddComposition(title, year);
+		result = it->AddComposition(title, year);
 	else {
 		Author new_author(author);
 		writers.push_back(new_author);
-		return writers.back().AddComposition(title, year);
+		result = writers.back().AddComposition(title, year);
 	}
+	return result;
 }
 
-bool Library::RemoveBook(std::string title, std::string author)
+bool Library::RemoveBook(const std::string& title, const std::string& author)
 {
+	bool result = false;
 	std::vector<Author>::iterator it;
 	for (it = writers.begin(); it != writers.end(); it++)
 		if (it->GetName() == author)
 			break;
 	if (it != writers.end()) {
-		return it->RemoveComposition(title);
+		result =  it->RemoveComposition(title);
 	}
-	else
-		return 0;
+	return result;
 }

@@ -9,6 +9,34 @@ Console::Console(Library& MyLibrary_)
 	: MyLibrary(MyLibrary_) 
 {}
 
+void Console::ConsoleCallMenu()
+{
+	int operation;
+	do {
+		operation = 0;
+		std::cout << std::endl << "Enter 1 to add author, 2 to add book," << std::endl;
+		std::cout << "3 to remove author, 4 to remove book," << std::endl;
+		std::cout << "5 to show libary contents, 6 to rename library" << std::endl;
+		std::cout << "7 for search, or enter anything else for exit." << std::endl;
+		std::cout << "operation: ";
+		std::cin >> operation;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << std::endl;
+
+		switch (operation) {
+		case 1: ConsoleAddAuthor(); break;
+		case 2: ConsoleAddBook(); break;
+		case 3: ConsoleRemoveAuthor(); break;
+		case 4: ConsoleRemoveBook(); break;
+		case 5: ConsoleGetContents(); break;
+		case 6: ConsoleRename(); break;
+		case 7: ConsoleFindBooks();
+		}
+
+	} while (operation);
+}
+
 void Console::ConsoleRename()
 {
 	std::string new_declaration;
@@ -77,7 +105,7 @@ void Console::ConsoleAddAuthor()
 	std::cout << "Enter name: ";
 	std::getline(std::cin, name);
 	if (!MyLibrary.AddAuthor(name)) 
-		std::cout << "This author already extists" << std::endl;
+		std::cout << "This author already exists" << std::endl;
 }
 
 void Console::ConsoleRemoveAuthor()

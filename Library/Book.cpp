@@ -1,7 +1,7 @@
 #include <string>
 #include "Book.h"
 
-Book::Book(std::string title_, std::string author_, int year_)
+Book::Book(const std::string& title_, const std::string& author_, int year_)
 	: title(title_), author(author_), year(year_)
 {}
 

@@ -8,14 +8,14 @@
 class Author
 {
 public:
-	Author(std::string name);
+	Author(const std::string& name);
 
 	std::string GetName();
 	std::vector<Book>& ListCompositions();
-	std::vector<Book> FindCompositions(std::string title);
+	std::vector<Book> FindCompositions(const std::string& title);
 	std::vector<Book> FindCompositions(int year);
-	bool AddComposition(std::string title, int year);
-	bool RemoveComposition(std::string title);
+	bool AddComposition(const std::string& title, int year);
+	bool RemoveComposition(const std::string& title);
 private:
 	std::string name;
 	std::vector<Book> compositions;

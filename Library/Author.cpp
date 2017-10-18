@@ -3,7 +3,7 @@
 #include "Author.h"
 #include "Book.h"
 
-Author::Author(std::string name_)
+Author::Author(const std::string& name_)
 	: name(name_)
 {}
 
@@ -17,7 +17,7 @@ std::vector<Book>& Author::ListCompositions()
 	return compositions;
 }
 
-std::vector<Book> Author::FindCompositions(std::string title)
+std::vector<Book> Author::FindCompositions(const std::string& title)
 {
 	std::vector<Book> found;
 	std::vector<Book>::iterator it;
@@ -37,8 +37,9 @@ std::vector<Book> Author::FindCompositions(int year)
 	return found;
 }
 
-bool Author::AddComposition(std::string title, int year)
+bool Author::AddComposition(const std::string& title, int year)
 {
+	bool result = false;
 	std::vector<Book>::iterator it;
 	for (it = compositions.begin(); it != compositions.end(); it++) {
 		if (it->GetTitle() == title)
@@ -47,22 +48,21 @@ bool Author::AddComposition(std::string title, int year)
 	if (it == compositions.end()) {
 		Book book(title, name, year);
 		compositions.push_back(book);
-		return 1;
+		result = true;
 	}
-	else
-		return 0;
+	return result;
 }
 
-bool Author::RemoveComposition(std::string title)
+bool Author::RemoveComposition(const std::string& title)
 {
+	bool result = false;
 	std::vector<Book>::iterator it;
 	for (it = compositions.begin(); it != compositions.end(); it++)
 		if (it->GetTitle() == title)
 			break;
 	if (it != compositions.end()) {
 		compositions.erase(it);
-		return 1;
+		result = true;
 	}
-	else
-		return 0;
+	return result;
 }
